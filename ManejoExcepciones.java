@@ -64,3 +64,28 @@ public class ManejoExcepciones {
                 System.out.println(error.getMessage());
             }
         }
+
+        // ----------------------
+        // Edad
+        // ----------------------
+        while (true) {
+            try {
+                System.out.print("Edad (número entre 1 y 119): ");
+                String edadInput = scanner.nextLine();
+                if (!edadInput.matches("\\d+")) {
+                    throw new EdadInvalida("Ingrese un número válido");
+                }
+                int edad = Integer.parseInt(edadInput);
+                if (edad <= 0 || edad >= 120) {
+                    throw new EdadInvalida("La edad debe estar entre 1 y 119");
+                }
+                System.out.println("Edad válida, gracias Usuario");
+                break;
+            } catch (EdadInvalida error) {
+                System.out.println(error.getMessage());
+            }
+        }
+
+        scanner.close();
+    }
+}
