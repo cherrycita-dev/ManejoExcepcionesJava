@@ -41,3 +41,26 @@ public class ManejoExcepciones {
                 System.out.println(error.getMessage());
             }
         }
+
+        // ----------------------
+        // Password
+        // ----------------------
+        while (true) {
+            try {
+                System.out.print("Password (mínimo 8 caracteres, con mayúscula y número): ");
+                String password = scanner.nextLine();
+                if (password.length() < 8) {
+                    throw new PasswordInvalida("La contraseña debe tener al menos 8 caracteres");
+                }
+                if (!password.chars().anyMatch(Character::isUpperCase)) {
+                    throw new PasswordInvalida("La contraseña debe contener al menos una mayúscula");
+                }
+                if (!password.chars().anyMatch(Character::isDigit)) {
+                    throw new PasswordInvalida("La contraseña debe contener al menos un número");
+                }
+                System.out.println("Contraseña válida\n");
+                break;
+            } catch (PasswordInvalida error) {
+                System.out.println(error.getMessage());
+            }
+        }
